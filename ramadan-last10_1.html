@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>العشر الأواخر من رمضان</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ5YDWM974"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TQ5YDWM974');
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --navy:    #0b1340;
+      --navy-mid:#0f1a5c;
+      --navy-light:#1a2870;
+      --gold:    #c9a84c;
+      --gold-light: #e5c97a;
+      --gold-pale: #f5e6b8;
+      --cream:   #fdf8ee;
+      --glass:   rgba(255,255,255,0.05);
+      --glass-border: rgba(201,168,76,0.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--navy);
+      color: var(--cream);
+      min-height: 100vh;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    /* ── Animated background ── */
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* Radial glow blobs */
+    .glow-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.18;
+      animation: floatBlob 12s ease-in-out infinite alternate;
+    }
+    .glow-blob-1 { width: 600px; height: 600px; background: var(--gold); top: -200px; right: -200px; animation-delay: 0s; }
+    .glow-blob-2 { width: 500px; height: 500px; background: #3a1f80; bottom: -150px; left: -100px; animation-delay: 4s; }
+    .glow-blob-3 { width: 300px; height: 300px; background: var(--gold-light); top: 40%; left: 30%; animation-delay: 2s; }
+
+    @keyframes floatBlob {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, -30px) scale(1.08); }
+    }
+
+    /* Islamic geometric SVG tiling */
+    .geo-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='0.8'%3E%3Cpolygon points='40,4 76,22 76,58 40,76 4,58 4,22'/%3E%3Cpolygon points='40,16 64,28 64,52 40,64 16,52 16,28'/%3E%3Cline x1='40' y1='4' x2='40' y2='16'/%3E%3Cline x1='76' y1='22' x2='64' y2='28'/%3E%3Cline x1='76' y1='58' x2='64' y2='52'/%3E%3Cline x1='40' y1='76' x2='40' y2='64'/%3E%3Cline x1='4' y1='58' x2='16' y2='52'/%3E%3Cline x1='4' y1='22' x2='16' y2='28'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 80px 80px;
+    }
+
+    /* Stars twinkle */
+    .stars { position: absolute; inset: 0; }
+    .star {
+      position: absolute;
+      background: var(--gold-pale);
+      border-radius: 50%;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.5); }
+    }
+
+    /* ── Layout ── */
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2rem 1rem 6rem;
+    }
+
+    /* ── Glass card ── */
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 2rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+
+    /* ── Gold divider ── */
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0.5rem 0 1.25rem;
+    }
+    .gold-divider::before,
+    .gold-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .gold-divider span { color: var(--gold); font-size: 1rem; }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── Hero ── */
+    .hero-title {
+      font-family: 'Amiri', serif;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 50%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .hero-sub {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: rgba(245,230,184,0.7);
+      text-align: center;
+    }
+
+    /* ── Moon crescent SVG ── */
+    .moon-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      animation: moonSway 6s ease-in-out infinite;
+    }
+    @keyframes moonSway {
+      0%, 100% { transform: rotate(-4deg); }
+      50%       { transform: rotate(4deg); }
+    }
+
+    /* ── Juz display ── */
+    .juz-number {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(3rem, 12vw, 5rem);
+      color: var(--gold);
+      text-shadow: 0 0 40px rgba(201,168,76,0.5);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+    .juz-label {
+      font-family: 'Amiri', serif;
+      font-size: 1.1rem;
+      color: var(--gold-pale);
+      opacity: 0.8;
+    }
+
+    /* ── Quran button ── */
+    .btn-quran {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, #b8873a, var(--gold), #e5c97a);
+      color: var(--navy);
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+    }
+    .btn-quran:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.6);
+      filter: brightness(1.08);
+    }
+
+    /* ── Tasbih ── */
+    #tasbih-circle {
+      width: min(220px, 55vw);
+      height: min(220px, 55vw);
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      background: radial-gradient(circle at 35% 35%, #1a2870, #0b1340);
+      box-shadow:
+        0 0 0 8px rgba(201,168,76,0.08),
+        0 0 0 16px rgba(201,168,76,0.04),
+        inset 0 0 40px rgba(201,168,76,0.1),
+        0 10px 40px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.2s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      margin: 0 auto;
+      position: relative;
+    }
+    #tasbih-circle::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    #tasbih-circle:active {
+      transform: scale(0.94);
+    }
+    #tasbih-circle.pulse {
+      animation: tasbihPulse 0.3s ease;
+    }
+    @keyframes tasbihPulse {
+      0%   { box-shadow: 0 0 0 8px rgba(201,168,76,0.08), 0 0 0 16px rgba(201,168,76,0.04), inset 0 0 40px rgba(201,168,76,0.1), 0 10px 40px rgba(0,0,0,0.5); }
+      50%  { box-shadow: 0 0 0 18px rgba(201,168,76,0.2), 0 0 0 36px rgba(201,168,76,0.08), inset 0 0 60px rgba(201,168,76,0.25), 0 10px 50px rgba(0,0,0,0.5); }
+      100% { box-shadow: 0 0 0 8px rgba(201,168,76,0.08), 0 0 0 16px rgba(201,168,76,0.04), inset 0 0 40px rgba(201,168,76,0.1), 0 10px 40px rgba(0,0,0,0.5); }
+    }
+
+    #tasbih-dhikr {
+      font-family: 'Amiri', serif;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      color: var(--gold-light);
+      margin-bottom: 0.3rem;
+      text-align: center;
+      padding: 0 0.5rem;
+      transition: opacity 0.3s;
+    }
+    #tasbih-count {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(2.5rem, 10vw, 4rem);
+      color: var(--gold);
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(201,168,76,0.6);
+      transition: transform 0.15s;
+    }
+    #tasbih-count.bump {
+      animation: countBump 0.2s ease;
+    }
+    @keyframes countBump {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.25); }
+      100% { transform: scale(1); }
+    }
+
+    .btn-tasbih {
+      width: min(220px, 55vw);
+      height: min(220px, 55vw);
+      display: block;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .btn-reset {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light);
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.5rem 1.4rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-reset:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: var(--gold);
+      transform: scale(1.03);
+    }
+
+    .dhikr-progress {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .dhikr-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.2);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .dhikr-dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    /* ── Dua card ── */
+    .dua-text {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.2rem, 4vw, 1.55rem);
+      line-height: 2;
+      color: var(--cream);
+      text-align: center;
+    }
+    .dua-translation {
+      font-size: 0.92rem;
+      color: rgba(245,230,184,0.6);
+      text-align: center;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+    .dhikr-pill {
+      display: inline-block;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-family: 'Amiri', serif;
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin: 0.3rem;
+      transition: background 0.2s;
+    }
+    .dhikr-pill:hover { background: rgba(201,168,76,0.22); }
+
+    /* ── Duas button ── */
+    .btn-duas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      background: rgba(201,168,76,0.08);
+      border: 1.5px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 0.9rem 2rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-duas:hover {
+      background: rgba(201,168,76,0.18);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(201,168,76,0.25);
+    }
+    .btn-duas:active { transform: scale(0.98); }
+
+    /* ── Sadaqah button ── */
+    .btn-sadaqah {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      width: 100%;
+      background: linear-gradient(135deg, #7c3a1e, #b85c2c, #d4803e);
+      color: #fff;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 1.1rem 2rem;
+      border-radius: 1rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      box-shadow: 0 4px 25px rgba(180,80,30,0.45);
+      letter-spacing: 0.03em;
+    }
+    .btn-sadaqah:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 8px 35px rgba(180,80,30,0.6);
+      filter: brightness(1.07);
+    }
+    .btn-sadaqah:active { transform: scale(0.98); }
+
+    /* ── Night indicator ── */
+    .night-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 100px;
+      padding: 0.3rem 1rem;
+      font-size: 0.88rem;
+      color: var(--gold-light);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      color: rgba(245,230,184,0.3);
+      font-size: 0.8rem;
+    }
+
+    /* ── Fade-in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeInUp 0.7s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.25s; }
+    .fade-in:nth-child(3) { animation-delay: 0.4s; }
+    .fade-in:nth-child(4) { animation-delay: 0.55s; }
+    .fade-in:nth-child(5) { animation-delay: 0.7s; }
+    .fade-in:nth-child(6) { animation-delay: 0.85s; }
+
+    /* ── Responsive tweaks ── */
+    @media (max-width: 480px) {
+      .glass-card { padding: 1.4rem 1.1rem; }
+      .page-wrap { padding: 1.2rem 0.75rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ BACKGROUND ══════════ -->
+<div class="bg-canvas">
+  <div class="glow-blob glow-blob-1"></div>
+  <div class="glow-blob glow-blob-2"></div>
+  <div class="glow-blob glow-blob-3"></div>
+  <div class="geo-pattern"></div>
+  <div class="stars" id="starsContainer"></div>
+</div>
+
+<!-- ══════════ PAGE ══════════ -->
+<div class="page-wrap">
+
+  <!-- ─── Hero ─── -->
+  <header class="fade-in text-center mb-8">
+    <div class="moon-wrap">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 8C18.745 8 8 18.745 8 32C8 45.255 18.745 56 32 56C38.627 56 44.627 53.373 49 49C44.373 52 38.373 54 32 54C20.954 54 12 45.046 12 34C12 22.954 20.954 14 32 14C36.627 14 40.882 15.555 44.25 18.178C40.627 12.069 34.814 8 32 8Z" fill="url(#moonGrad)"/>
+        <defs>
+          <linearGradient id="moonGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#f5e6b8"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <p class="section-label mb-1">رمضان المبارك</p>
+    <h1 class="hero-title">العشر الأواخر</h1>
+    <p class="hero-sub">أفضل ليالي العام — اغتنمها</p>
+
+    <div class="mt-4 flex justify-center">
+      <div class="night-badge" id="nightBadge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        <span id="nightLabel">جاري الحساب…</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── Quran Ward ─── -->
+  <section class="glass-card mb-5 fade-in" id="quranSection">
+    <p class="section-label">📖 ورد القرآن</p>
+    <div class="gold-divider"><span>✦</span></div>
+
+    <div class="flex items-center justify-between flex-wrap gap-4">
+      <div>
+        <p class="juz-label mb-1">الجزء المقرر اليوم</p>
+        <span class="juz-number" id="juzNumber">—</span>
+      </div>
+      <a id="quranLink" href="#" target="_blank" rel="noopener" class="btn-quran">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        اقرأ الجزء
+      </a>
+    </div>
+
+    <p class="mt-4 text-sm" style="color:rgba(245,230,184,0.5);">
+      ختم القرآن في العشر الأواخر — نور يملأ قلبك في أفضل الليالي
+    </p>
+  </section>
+
+  <!-- ─── Tasbih ─── -->
+  <section class="glass-card mb-5 fade-in" id="tasbihSection">
+    <p class="section-label">📿 المسبحة الإلكترونية</p>
+    <div class="gold-divider"><span>✦</span></div>
+
+    <div class="flex flex-col items-center gap-4">
+      <!-- Dhikr cycle indicator -->
+      <div class="dhikr-progress" id="dhikrDots">
+        <div class="dhikr-dot active" data-i="0"></div>
+        <div class="dhikr-dot" data-i="1"></div>
+        <div class="dhikr-dot" data-i="2"></div>
+        <div class="dhikr-dot" data-i="3"></div>
+      </div>
+
+      <!-- The circle -->
+      <div id="tasbih-circle" role="button" aria-label="تسبيح" tabindex="0">
+        <div id="tasbih-dhikr">سبحان الله</div>
+        <div id="tasbih-count">0</div>
+      </div>
+
+      <!-- Total rounds -->
+      <p class="text-xs" style="color:rgba(245,230,184,0.45);" id="roundsLabel">الدورة 1 من 4 أذكار</p>
+
+      <div class="flex gap-3 mt-1">
+        <button class="btn-reset" id="btnReset">↺ تصفير</button>
+        <button class="btn-reset" id="btnUndo" style="display:none">↩ تراجع</button>
+      </div>
+
+      <!-- Total counter -->
+      <div class="text-center">
+        <p class="text-xs" style="color:rgba(245,230,184,0.4);">إجمالي التسبيحات اليوم</p>
+        <p class="text-xl font-bold" style="color:var(--gold-light)" id="totalCount">0</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Dua ─── -->
+  <section class="glass-card mb-5 fade-in" id="duaSection">
+    <p class="section-label">🤲 دعاء ليلة القدر</p>
+    <div class="gold-divider"><span>✦</span></div>
+
+    <div class="dua-text mb-2">
+      اللَّهُمَّ إِنَّكَ عَفُوٌّ كَرِيمٌ<br/>
+      تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي
+    </div>
+    <p class="dua-translation">
+      "اللهم إنك عفو كريم تحب العفو فاعف عني"<br/>
+      — روته السيدة عائشة رضي الله عنها
+    </p>
+
+    <div class="gold-divider mt-5"><span>أذكار مختصرة</span></div>
+
+    <div class="flex flex-wrap justify-center">
+      <span class="dhikr-pill">سُبْحَانَ اللَّهِ</span>
+      <span class="dhikr-pill">الْحَمْدُ لِلَّهِ</span>
+      <span class="dhikr-pill">اللَّهُ أَكْبَرُ</span>
+      <span class="dhikr-pill">لَا إِلَهَ إِلَّا اللَّهُ</span>
+      <span class="dhikr-pill">أَسْتَغْفِرُ اللَّهَ</span>
+      <span class="dhikr-pill">سبحان الله وبحمده</span>
+      <span class="dhikr-pill">سبحان الله العظيم</span>
+    </div>
+
+    <div class="mt-5 rounded-xl p-4" style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15)">
+      <p class="text-sm font-bold mb-1" style="color:var(--gold)">✨ دعاء من القرآن</p>
+      <p class="text-sm" style="color:rgba(245,230,184,0.75);font-family:'Amiri',serif;font-size:1.05rem;line-height:1.9">
+        رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ
+      </p>
+    </div>
+
+    <div class="gold-divider mt-5"><span>✦</span></div>
+
+    <a href="https://drive.google.com/file/d/1ybz861m3NBFGMTSJuosx1Xg-_Nl26yes/view?usp=sharing"
+       target="_blank" rel="noopener" class="btn-duas">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="12" y1="18" x2="12" y2="12"/>
+        <line x1="9" y1="15" x2="15" y2="15"/>
+      </svg>
+      افتح ملف الأدعية
+    </a>
+  </section>
+
+  <!-- ─── Sadaqah ─── -->
+  <section class="fade-in">
+    <a href="https://ehsan.sa/" target="_blank" rel="noopener" class="btn-sadaqah">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+      </svg>
+      ساهم بصدقة الليلة — منصة إحسان
+    </a>
+    <p class="text-center text-xs mt-2" style="color:rgba(245,230,184,0.35)">
+      الصدقة تُطفئ الخطيئة كما يُطفئ الماءُ النار
+    </p>
+  </section>
+
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p style="font-family:'Amiri',serif;font-size:1rem;color:rgba(245,230,184,0.4)">
+    ﴿ وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا ﴾
+  </p>
+  <p class="mt-1">جعله الله في ميزان حسناتكم</p>
+</footer>
+
+
+<script>
+/* ═══════════════════════════════════════════════
+   STARS
+═══════════════════════════════════════════════ */
+(function generateStars() {
+  const container = document.getElementById('starsContainer');
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    star.style.cssText = `
+      width:${size}px; height:${size}px;
+      top:${Math.random()*100}%;
+      left:${Math.random()*100}%;
+      animation-delay:${Math.random()*4}s;
+      animation-duration:${2+Math.random()*3}s;
+    `;
+    container.appendChild(star);
+  }
+})();
+
+/* ═══════════════════════════════════════════════
+   JUZ DATA (30 parts)
+═══════════════════════════════════════════════ */
+const JUZ_DATA = [
+  { name: "الم",          surah: "البقرة (1-141)" },
+  { name: "سيقول",        surah: "البقرة (142) - آل عمران (92)" },
+  { name: "تلك الرسل",    surah: "آل عمران (93) - النساء (23)" },
+  { name: "لن تنالوا",    surah: "النساء (24-147)" },
+  { name: "والمحصنات",    surah: "النساء (148) - المائدة (81)" },
+  { name: "لا يحب الله",  surah: "المائدة (82) - الأنعام (110)" },
+  { name: "وإذا سمعوا",   surah: "الأنعام (111) - الأعراف (87)" },
+  { name: "ولو أننا",     surah: "الأعراف (88) - الأنفال (40)" },
+  { name: "قال الملأ",    surah: "الأنفال (41) - التوبة (92)" },
+  { name: "واعلموا",      surah: "التوبة (93) - هود (5)" },
+  { name: "يعتذرون",      surah: "هود (6) - يوسف (52)" },
+  { name: "وما من دابة",  surah: "يوسف (53) - إبراهيم (52)" },
+  { name: "وما أبرئ",     surah: "الحجر (1) - النحل (128)" },
+  { name: "ربما",         surah: "الإسراء (1) - الكهف (74)" },
+  { name: "سبحان الذي",   surah: "الكهف (75) - طه (135)" },
+  { name: "قال ألم",      surah: "الأنبياء (1) - الحج (78)" },
+  { name: "وقال الذين",   surah: "المؤمنون (1) - الفرقان (20)" },
+  { name: "قد أفلح",      surah: "الفرقان (21) - النمل (55)" },
+  { name: "وقال الذين",   surah: "النمل (56) - العنكبوت (44)" },
+  { name: "أمّن خلق",     surah: "العنكبوت (45) - الأحزاب (30)" },
+  { name: "اتل ما أوحي",  surah: "الأحزاب (31) - يس (27)" },
+  { name: "ومن يقنت",     surah: "يس (28) - الزمر (31)" },
+  { name: "وما لي",       surah: "الزمر (32) - فصلت (46)" },
+  { name: "فمن أظلم",     surah: "فصلت (47) - الجاثية (37)" },
+  { name: "إليه يرد",     surah: "الأحقاف (1) - الذاريات (30)" },
+  { name: "قال فما",      surah: "الذاريات (31) - الحديد (29)" },
+  { name: "قال فما خطبكم",surah: "المجادلة (1) - التحريم (12)" },
+  { name: "قد سمع الله",  surah: "الملك (1) - المرسلات (50)" },
+  { name: "تبارك الذي",   surah: "النبأ (1) - الناس (6)" },
+  { name: "عم يتساءلون",  surah: "النبأ — الناس (كامل)" },
+];
+
+/* ═══════════════════════════════════════════════
+   DATE / RAMADAN LOGIC
+═══════════════════════════════════════════════ */
+
+// Convert Arabic-Indic digits (٠١٢…) to Western (012…)
+function toWesternDigits(str) {
+  return String(str).replace(/[٠-٩]/g, d => d.charCodeAt(0) - 1632);
+}
+
+function getHijriDay() {
+  // Try multiple calendar variants for best compatibility
+  const locales = [
+    'en-SA-u-ca-islamic-umalqura',
+    'en-u-ca-islamic-umalqura',
+    'en-u-ca-islamic',
+  ];
+  for (const locale of locales) {
+    try {
+      const fmt = new Intl.DateTimeFormat(locale, {
+        day: 'numeric', month: 'numeric', year: 'numeric',
+        numberingSystem: 'latn'          // force Western digits
+      });
+      const parts = fmt.formatToParts(new Date());
+      const rawDay   = parts.find(p => p.type === 'day')?.value   || '';
+      const rawMonth = parts.find(p => p.type === 'month')?.value || '';
+      const day   = parseInt(toWesternDigits(rawDay),   10);
+      const month = parseInt(toWesternDigits(rawMonth), 10);
+      if (!isNaN(day) && !isNaN(month) && day >= 1 && day <= 30) {
+        return { day, month };
+      }
+    } catch(e) { /* try next */ }
+  }
+  // Hard fallback — Ramadan 1447 runs ~1 Mar – 30 Mar 2026
+  // Calculate offset from 1 Mar 2026 = 1 Ramadan 1447
+  const ramadanStart = new Date('2026-03-01');
+  const today        = new Date();
+  today.setHours(0,0,0,0);
+  ramadanStart.setHours(0,0,0,0);
+  const diff = Math.floor((today - ramadanStart) / 86400000) + 1;
+  const day  = Math.max(1, Math.min(30, diff));
+  return { day, month: 9 };
+}
+
+function initDateSection() {
+  const { day, month } = getHijriDay();
+
+  // Juz index: day 1 → Juz 1, etc.
+  const juzIndex = Math.max(0, Math.min(29, day - 1));
+  const juz = JUZ_DATA[juzIndex];
+
+  document.getElementById('juzNumber').textContent = day;
+
+  document.getElementById('quranLink').href = 'https://qurancomplex.gov.sa/quran-hafs/#flipbook-df_11311/1/';
+
+  // Night label
+  const isLastTen = (month === 9 && day >= 21);
+  let nightText = `يوم ${day} من رمضان`;
+  if (isLastTen) {
+    const n = day - 20;
+    const ordinals = ['','الأولى','الثانية','الثالثة','الرابعة','الخامسة',
+                       'السادسة','السابعة','الثامنة','التاسعة','العاشرة'];
+    nightText = `الليلة ${ordinals[n] || n} من العشر الأواخر`;
+  }
+  document.getElementById('nightLabel').textContent = nightText;
+}
+
+initDateSection();
+
+/* ═══════════════════════════════════════════════
+   TASBIH
+═══════════════════════════════════════════════ */
+const DHIKR_LIST = [
+  "سبحان الله",
+  "الحمد لله",
+  "الله أكبر",
+  "أستغفر الله"
+];
+const CYCLE = 33;
+
+// Safe storage wrapper (falls back to memory if localStorage unavailable)
+const store = (() => {
+  const mem = {};
+  try { localStorage.setItem('_t','1'); localStorage.removeItem('_t'); }
+  catch(e) { return { get: k => mem[k]||null, set: (k,v) => { mem[k]=String(v); } }; }
+  return {
+    get: k => localStorage.getItem(k),
+    set: (k,v) => { try { localStorage.setItem(k,String(v)); } catch(e){} }
+  };
+})();
+
+// Reset count each new calendar day
+const todayStr = new Date().toDateString();
+if (store.get('tasbih_date') !== todayStr) {
+  store.set('tasbih_date', todayStr);
+  store.set('tasbih_count', '0');
+  store.set('tasbih_total', '0');
+}
+
+let count      = parseInt(store.get('tasbih_count') || '0', 10);
+let totalCount = parseInt(store.get('tasbih_total') || '0', 10);
+let lastUndo   = null;
+
+const tasbihCircle = document.getElementById('tasbih-circle');
+const tasbihCount  = document.getElementById('tasbih-count');
+const tasbihDhikr  = document.getElementById('tasbih-dhikr');
+const roundsLabel  = document.getElementById('roundsLabel');
+const totalEl      = document.getElementById('totalCount');
+const btnReset     = document.getElementById('btnReset');
+const btnUndo      = document.getElementById('btnUndo');
+const dots         = document.querySelectorAll('.dhikr-dot');
+
+function getDhikrIndex() {
+  return Math.floor(count / CYCLE) % DHIKR_LIST.length;
+}
+
+function updateUI() {
+  const di = getDhikrIndex();
+
+  // Display 1–33 within each cycle; show 33 right after completing
+  const inCycle = count % CYCLE;
+  tasbihCount.textContent = (inCycle === 0 && count > 0) ? CYCLE : inCycle;
+  tasbihDhikr.textContent = DHIKR_LIST[di];
+  totalEl.textContent     = totalCount.toLocaleString('ar-EG');
+
+  dots.forEach(d => d.classList.toggle('active', parseInt(d.dataset.i) === di));
+
+  roundsLabel.textContent = `الذكر ${di + 1} من ${DHIKR_LIST.length} — (${CYCLE} مرة)`;
+
+  store.set('tasbih_count', count);
+  store.set('tasbih_total', totalCount);
+}
+
+function tap() {
+  lastUndo = count;
+  count++;
+  totalCount++;
+  btnUndo.style.display = 'inline-flex';
+
+  if (navigator.vibrate) {
+    count % CYCLE === 0
+      ? navigator.vibrate([60, 40, 60])
+      : navigator.vibrate(25);
+  }
+
+  tasbihCircle.classList.remove('pulse');
+  tasbihCount.classList.remove('bump');
+  void tasbihCircle.offsetWidth;
+  tasbihCircle.classList.add('pulse');
+  tasbihCount.classList.add('bump');
+
+  updateUI();
+}
+
+tasbihCircle.addEventListener('click', tap);
+tasbihCircle.addEventListener('keydown', e => {
+  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); tap(); }
+});
+
+btnReset.addEventListener('click', () => {
+  count = 0; totalCount = 0; lastUndo = null;
+  btnUndo.style.display = 'none';
+  updateUI();
+});
+
+btnUndo.addEventListener('click', () => {
+  if (lastUndo === null || count === 0) return;
+  count      = lastUndo;
+  totalCount = Math.max(0, totalCount - 1);
+  lastUndo   = null;
+  btnUndo.style.display = 'none';
+  updateUI();
+});
+
+updateUI();
+</script>
+</body>
+</html>
